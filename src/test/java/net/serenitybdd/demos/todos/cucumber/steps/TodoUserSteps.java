@@ -1,6 +1,5 @@
 package net.serenitybdd.demos.todos.cucumber.steps;
 
-
 import com.google.common.base.Splitter;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
@@ -8,24 +7,23 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.core.annotations.events.AfterExample;
-import net.serenitybdd.core.annotations.events.AfterScenario;
-import net.serenitybdd.core.annotations.events.BeforeExample;
-import net.serenitybdd.core.annotations.events.BeforeScenario;
 import net.serenitybdd.demos.todos.cucumber.MissingTodoItemsException;
 import net.serenitybdd.demos.todos.screenplay.model.TodoStatusFilter;
 import net.serenitybdd.demos.todos.screenplay.questions.TheItems;
 import net.serenitybdd.demos.todos.screenplay.tasks.*;
+import net.serenitybdd.demos.todos.utils.Screenshotutils1;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.thucydides.core.model.TestOutcome;
+import net.thucydides.core.webdriver.WebDriverFacade;
+import org.openqa.selenium.WebDriver;
 
 import java.util.List;
-
 import static java.util.Collections.EMPTY_LIST;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 
@@ -35,6 +33,8 @@ public class TodoUserSteps {
     public void set_the_stage() {
         setTheStage(new OnlineCast());
     }
+
+    //input[@title='Search']
 
     @AfterExample
     public void deleteAllTheTasks() {
@@ -111,8 +111,13 @@ public class TodoUserSteps {
 
     @When("{actor} filters her list to show only {filter} tasks")
     public void filters_tasks_by(Actor actor, TodoStatusFilter status) {
+       WebDriver driver= ((WebDriverFacade) getDriver()).getProxiedDriver();
         actor.attemptsTo(
                 FilterItems.toShow(status)
         );
+        Screenshotutils1.takeScreenshot(driver,"Hello.png","/Users/amarsingh/Workspace/seerenity/selenium/screenplay-pattern-todomvc/screenshots");
+        Screenshotutils1.takeScreenshot(driver,"Hello1.png","/Users/amarsingh/Workspace/seerenity/selenium/screenplay-pattern-todomvc/screenshots");
+        Screenshotutils1.takeScreenshot(driver,"Hi.png","/Users/amarsingh/Workspace/seerenity/selenium/screenplay-pattern-todomvc/screenshots");
+        Screenshotutils1.takeScreenshot(driver,"Hi1.png","/Users/amarsingh/Workspace/seerenity/selenium/screenplay-pattern-todomvc/screenshots");
     }
 }

@@ -13,6 +13,7 @@ public class AddATodoItem {
                 Enter.theValue(thingToDo)
                         .into(WHAT_NEEDS_TO_BE_DONE)
                         .thenHit(RETURN)
+
                 ).with("thingToDo").of(thingToDo);
     }
 }

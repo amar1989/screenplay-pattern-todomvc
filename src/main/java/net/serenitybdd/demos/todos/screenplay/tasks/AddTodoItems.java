@@ -15,7 +15,9 @@ public class AddTodoItems implements Task {
     private List<String> todos;
 
     public AddTodoItems(){}
-    public AddTodoItems(Collection<String> items) { this.todos = ImmutableList.copyOf(items); }
+    public AddTodoItems(Collection<String> items) {
+        this.todos = ImmutableList.copyOf(items);
+    }
 
     @Step("{0} adds the todo items called: #todos")
     public <T extends Actor> void performAs(T actor) {

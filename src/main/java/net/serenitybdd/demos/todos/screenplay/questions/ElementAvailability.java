@@ -14,7 +14,10 @@ public enum ElementAvailability {
 
     public static ElementAvailability from(Boolean visibility) {
         for (ElementAvailability elementAvailability : values()) {
-            if(visibility == elementAvailability.isAvailable) { return elementAvailability; }
+            if(visibility == elementAvailability.isAvailable)
+            {
+                return elementAvailability;
+            }
         }
         throw new IllegalArgumentException("Unknown value " + visibility);
     }
